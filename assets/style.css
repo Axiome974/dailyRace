@@ -1,0 +1,236 @@
+
+body {
+    /*background-color: #a9d550;*/
+    /*background-image:*/
+    /*        linear-gradient(45deg, #a1cf48 25%, transparent 25%),*/
+    /*        linear-gradient(-45deg, #a1cf48 25%, transparent 25%),*/
+    /*        linear-gradient(45deg, transparent 75%, #a1cf48 75%),*/
+    /*        linear-gradient(-45deg, transparent 75%, #a1cf48 75%);*/
+    /*background-size: 60px 60px;*/
+    /*background-position: 0 0, 0 30px, 30px -30px, -30px 0px;*/
+}
+
+.grass-bg{
+    background-image: url('./images/grass-2.jpg');
+    background-repeat: repeat;
+    background-position: unset;
+    background-size: 128px;
+}
+
+.arrival{
+    position: absolute;
+    background-color: #000000;
+    background-image:
+            linear-gradient(45deg, white 25%, transparent 25%),
+            linear-gradient(-45deg, white 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, white 75%),
+            linear-gradient(-45deg, transparent 75%, white 75%);
+    background-size: 60px 60px;
+    background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+    height: 120px;
+    top: 0;
+    width: 100%;
+}
+.start{
+    position: absolute;
+    background-color: #573d22;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    border-top: 8px solid #931636;
+}
+
+.race-zone{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.race-zone .player-card{
+    position: absolute;
+    width: 128px;
+    transition: bottom 2s linear;
+}
+
+.walk-animation{
+    animation: pawn-move 0.5s  infinite;
+}
+
+.race-zone .player-card .character{
+    width: 128px;
+    height: 128px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.race-zone .player-card .player-name{
+    padding-top: 92px;
+    text-align: center;
+}
+
+.horse-road{
+    position: relative;
+    height: 100dvh;
+    background-image: url('./images/696.jpg');
+    background-repeat: repeat;
+    background-position: unset;
+    background-size: 128px;
+    /*background-color:#6b4b2a;*/
+
+    /*!* 1) petites taches irrégulières *!*/
+    /*background-image:*/
+    /*        radial-gradient(circle at 20% 30%, rgba(0,0,0,.18) 0 6px, transparent 7px),*/
+    /*        radial-gradient(circle at 70% 60%, rgba(255,255,255,.10) 0 5px, transparent 6px),*/
+    /*        radial-gradient(circle at 40% 80%, rgba(0,0,0,.16) 0 4px, transparent 5px),*/
+    /*        radial-gradient(circle at 85% 25%, rgba(255,255,255,.08) 0 3px, transparent 4px),*/
+
+    /*            !* 2) grain fin global *!*/
+    /*        repeating-radial-gradient(circle at 0 0,*/
+    /*        rgba(255,255,255,.06) 0 1px,*/
+    /*        rgba(0,0,0,.06) 1px 2px,*/
+    /*        transparent 2px 6px*/
+    /*        );*/
+
+    /*!* tailles des “cellules” de répétition *!*/
+    /*background-size:*/
+    /*        80px 80px,*/
+    /*        90px 90px,*/
+    /*        70px 70px,*/
+    /*        110px 110px,*/
+    /*        60px 60px;*/
+
+    /*!* décalages pour casser la répétition *!*/
+    /*background-position:*/
+    /*        0 0,*/
+    /*        15px 10px,*/
+    /*        30px 25px,*/
+    /*        40px 5px,*/
+    /*        0 0;;*/
+}
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.players{
+    margin-top: 5%;
+}
+
+.card{
+    border: none;
+    box-shadow: none;
+    background-color: #588114;
+    border-radius: 24px;
+    padding: 12px;
+
+}
+
+.card-header{
+    color: white;
+    border: none;
+    background-color: transparent;
+}
+
+.list-group-item{
+    border: none;
+    background-color: #80be15;
+    font-weight: bold;
+    border-radius: 9999px !important;
+    margin-bottom: 6px;
+}
+
+.list-group-item:last-child{
+    border: none;
+}
+
+.btn-go, .btn-cancel{
+    border-radius: 9999px;
+    border: none;
+    font-size: 32px;
+    font-family: "Luckiest Guy";
+    color: white;
+    background-color: #578014;
+    padding: 12px 32px;
+}
+
+.btn-cancel{
+    color: white;
+    background-color: #ad4929;
+    padding: 12px 32px;
+}
+
+.btn-go:hover, .btn-cancel:hover{
+    color: white;
+    background-color: #578014;
+    filter: brightness(1.2);
+}
+.btn-cancel:hover{
+    background-color: #ad4929;
+
+}
+
+.player-animation-overlay, .player-victory-overlay{
+    width: 100dvw;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.77);
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.player-animation-overlay .player-animation-card{
+    height: 512px;
+    width: 512px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: white;
+    padding-top: 400px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.cursor-pointer:hover{
+    scale: 1.2;
+}
+
+@keyframes pawn-move{
+    0%{
+        transform: translateX(0) translateY(0);
+    }
+    25%{
+        transform: translateX(-8px) translateY(-13px) rotate(-10deg);
+        scale: 1.3;
+    }
+    50%{
+        transform: translateX(0) translateY(0);
+    }
+    75%{
+        transform: translateX(+8px) translateY(-13px) rotate(10deg);
+        scale: 1.3;
+    }
+}
+
+.btn-menu-panel{
+    background: unset;
+    border: none;
+    color: white;
+}
