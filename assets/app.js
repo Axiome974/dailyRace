@@ -152,7 +152,7 @@ const game = {
     },
 
     updatePlayerScore(player){
-        playerScoreList.querySelector("#player_score_"+player.name.toLowerCase().replace(' ', '_')+" .points").textContent =`${player.points} pts`
+        playerScoreList.querySelector("#player_score_"+player.name.toLowerCase().replace(' ', '_')+" .points").textContent =`${player.points}`
     },
 
     showScoreResultChoice() {
@@ -173,7 +173,7 @@ const game = {
         playerScore.querySelector('.list-group-item').id = 'player_score_' + player.name.toLowerCase().replace(' ', '_')
         playerScore.querySelector('.player-name').textContent = player.name
         playerScore.querySelector('.avatar').style.backgroundImage = 'url(' + player.avatar + ')'
-        playerScore.querySelector('.points').textContent = `${player.points} pts`
+        playerScore.querySelector('.points').textContent = `${player.points}`
         playerScoreList.append(playerScore)
     },
 
