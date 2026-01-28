@@ -93,24 +93,27 @@
                 </template>
             </div>
         </div>
-        <div class="col-2"></div>
-        <div class="col-4 players">
+        <div class="col-1"></div>
+        <div class="col-5 players">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <div class="card-title fw-bold h5"> <i class="fa-solid fa-flag-checkered me-2"></i> En course</div>
                         <div>
                             <button id="menu-btn-reset" class="btn-menu-panel">
-                                <i class="fas fa-refresh cursor-pointer" ></i>
+                                <i class="fas fa-refresh" ></i>
+                            </button>
+                            <button id="menu-btn-edit" class="btn-menu-panel">
+                                <i class="fas fa-pencil" ></i>
                             </button>
                             <button class="btn-menu-panel" id="menu-btn-add-user">
-                            <i class="fas fa-user-plus cursor-pointer" ></i>
+                            <i class="fas fa-user-plus" ></i>
                             </button>
                             <button class="btn-menu-panel" id="menu-btn-share">
-                            <i class="fas fa-share-nodes cursor-pointer" ></i>
+                            <i class="fas fa-share-nodes" ></i>
                             </button>
                             <button class="btn-menu-panel" id="menu-btn-settings">
-                            <i class="fas fa-gear cursor-pointer" ></i>
+                            <i class="fas fa-gear" ></i>
                             </button>
                         </div>
                     </div>
@@ -127,10 +130,15 @@
                                         <div class="avatar"></div>
                                         <div class="fw-bold player-name"></div>
                                     </div>
-                                    <div class="d-flex align-items-center badge bg-success rounded-pill p-2" style="font-size: 1rem">
-                                         <i class="fas fa-trophy me-1"></i><span class="points fw-bold m-0"></span>
+                                    <div class="d-flex gap-2">
+                                        <div class="d-flex align-items-center badge bg-success rounded-pill p-2" style="font-size: 1rem">
+                                            <i class="fas fa-trophy me-1"></i><span class="points fw-bold m-0"></span>
+                                        </div>
+                                        <div class="badge bg-danger rounded-pill align-items-center edit-score-buttons">
+                                            <div><button class="btn btn-sm btn-menu-panel" data-action="click:addPoint"><i class="fas fa-plus-circle"></i></button></div>
+                                            <div><button class="btn btn-sm btn-menu-panel" data-action="click:removePoint"><i class="fas fa-minus-circle"></i></button></div>
+                                        </div>
                                     </div>
-
                                 </div>
                             </li>
                         </template>

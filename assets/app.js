@@ -66,6 +66,7 @@ const menuReset = document.getElementById("menu-btn-reset")
 const menuAddUser = document.getElementById("menu-btn-add-user")
 const menuShare = document.getElementById("menu-btn-share")
 const menuSettings = document.getElementById("menu-btn-settings")
+const menuEdit = document.getElementById("menu-btn-edit")
 
 
 const sound = new Audio('./assets/sounds/drum-roll.mp3')
@@ -83,7 +84,25 @@ const game = {
         this.initPlayerScores()
         this.initPlayerCards()
         this.initEventListeners()
+        this.initActionTriggers()
         this.saveInLocalStorage()
+    },
+
+
+    initActionTriggers(){
+        const actionTriggers = Array.from(document.querySelectorAll('[data-action]'));
+        actionTriggers.forEach( element => this.initAction(element) )
+    },
+
+    initAction(element){
+        const params = element.dataset.action.split(':')
+        if( params.length !== 2 ){
+            console.error(`${element.dataset.action} is invalid`)
+            return false
+        }
+        console.log(params[0])
+        console.log(params[1])
+        element.addEventListener(params[0], event => this[params[1]](event) )
     },
 
     initEventListeners() {
@@ -92,6 +111,33 @@ const game = {
         notThisTimeButton.addEventListener("click", this.onNotThisTime.bind(this))
         menuReset.addEventListener("click", this.onReset.bind(this) )
         victoryButton.addEventListener("click", this.onReset.bind(this) )
+        menuEdit.addEventListener("click", this.toggleEditMode.bind(this) )
+    },
+
+    addPoint(event){
+        const playerName = event.currentTarget.closest('.list-group-item').id.replace('player_score_', '')
+        this.config.players = this.config.players.map(p => {
+            if( p.name.toLowerCase() === playerName ){
+                p.points++
+                this.updatePlayerScore(p)
+                this.updatePlayerPosition(p)
+            }
+            return p
+        } )
+        this.saveInLocalStorage()
+    },
+
+    removePoint(event){
+        const playerName = event.currentTarget.closest('.list-group-item').id.replace('player_score_', '')
+        this.config.players = this.config.players.map(p => {
+            if( p.name.toLowerCase() === playerName ){
+                p.points--
+                this.updatePlayerScore(p)
+                this.updatePlayerPosition(p)
+            }
+            return p
+        } )
+        this.saveInLocalStorage()
     },
 
     initPlayerScores() {
@@ -219,6 +265,10 @@ const game = {
 
     hideVictory(){
         victoryOverlay.classList.add("d-none")
+    },
+
+    toggleEditMode() {
+        playerScoreList.classList.toggle('edit-mode')
     },
 
     onAddPoint() {

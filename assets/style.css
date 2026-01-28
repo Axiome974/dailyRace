@@ -234,3 +234,11 @@ body {
     border: none;
     color: white;
 }
+
+#player-score-list .edit-score-buttons{
+    display: none;
+}
+
+#player-score-list.edit-mode .edit-score-buttons{
+    display: flex;
+}
