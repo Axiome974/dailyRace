@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Course de chevaux</title>
+    <title>Daily Race</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,7 +26,7 @@
 
 <div class="player-victory-overlay d-none" id="victory-overlay">
     <img src="assets/images/victory.png" alt="" height="620">
-    <img src="assets/images/cocci.png" alt="" style="position: fixed; top:35%" width="520" class="animate__animated animate__infinite animate__bounce">
+    <img src="assets/images/__CHAR__.png" alt="" style="position: fixed; top:35%" width="520" class="animate__animated animate__infinite animate__bounce" id="victory-picture">
     <button class="btn-go mt-4" style="z-index: 1000" id="victory-button">Bravo</button>
 </div>
 
@@ -100,56 +100,78 @@
                     <div class="d-flex justify-content-between">
                         <div class="card-title fw-bold h5"> <i class="fa-solid fa-flag-checkered me-2"></i> En course</div>
                         <div>
-                            <button id="menu-btn-reset" class="btn-menu-panel">
+                            <button id="menu-btn-reset" class="btn-menu-panel" title="Redémarrer la partie">
                                 <i class="fas fa-refresh" ></i>
                             </button>
-                            <button id="menu-btn-edit" class="btn-menu-panel">
+                            <button id="menu-btn-edit" class="btn-menu-panel" title="Modifier les scores">
                                 <i class="fas fa-pencil" ></i>
                             </button>
-                            <button class="btn-menu-panel" id="menu-btn-add-user">
-                            <i class="fas fa-user-plus" ></i>
-                            </button>
-                            <button class="btn-menu-panel" id="menu-btn-share">
+<!--                            <button class="btn-menu-panel" id="menu-btn-add-user">-->
+<!--                            <i class="fas fa-user-plus" ></i>-->
+<!--                            </button>-->
+                            <button class="btn-menu-panel" id="menu-btn-share" title="Partager les scores">
                             <i class="fas fa-share-nodes" ></i>
                             </button>
-                            <button class="btn-menu-panel" id="menu-btn-settings">
-                            <i class="fas fa-gear" ></i>
-                            </button>
+<!--                            <button class="btn-menu-panel" id="menu-btn-settings">-->
+<!--                            <i class="fas fa-gear" ></i>-->
+<!--                            </button>-->
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="text-center h5 mb-3 mt-2 fw-bold text-white">
-                        <i class="fas fa-trophy me-2"></i> 10 Points pour remporter le prix
+                    <div class="score-view">
+                        <div class="text-center h5 mb-3 mt-2 fw-bold text-white">
+                            <i class="fas fa-trophy me-2"></i> 10 Points pour remporter le prix
+                        </div>
+                        <ul class="list-group mt-4" id="player-score-list">
+                            <template id="player-score-template">
+                                <li class="list-group-item">
+                                    <div class="d-flex gap-3 align-items-center justify-content-between">
+                                        <div class="d-flex gap-3 align-items-center">
+                                            <div class="avatar"></div>
+                                            <div class="fw-bold player-name"></div>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <div class="d-flex align-items-center badge bg-success rounded-pill p-2" style="font-size: 1rem">
+                                                <i class="fas fa-trophy me-1"></i><span class="points fw-bold m-0"></span>
+                                            </div>
+                                            <div class="badge bg-danger rounded-pill align-items-center edit-score-buttons">
+                                                <div><button class="btn btn-sm btn-menu-panel" data-action="click:addPoint"><i class="fas fa-plus-circle"></i></button></div>
+                                                <div><button class="btn btn-sm btn-menu-panel" data-action="click:removePoint"><i class="fas fa-minus-circle"></i></button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                        <div class="w-100 mt-5 p-5">
+                            <button class="btn btn-go w-100  animate__infinite animate__animated animate__pulse" id="go-button">
+                                <i class="fa-solid fa-horse me-2"></i> C'est parti!
+                            </button>
+                        </div>
                     </div>
-                    <ul class="list-group mt-4" id="player-score-list">
-                        <template id="player-score-template">
-                            <li class="list-group-item">
-                                <div class="d-flex gap-3 align-items-center justify-content-between">
-                                    <div class="d-flex gap-3 align-items-center">
-                                        <div class="avatar"></div>
-                                        <div class="fw-bold player-name"></div>
-                                    </div>
-                                    <div class="d-flex gap-2">
-                                        <div class="d-flex align-items-center badge bg-success rounded-pill p-2" style="font-size: 1rem">
-                                            <i class="fas fa-trophy me-1"></i><span class="points fw-bold m-0"></span>
-                                        </div>
-                                        <div class="badge bg-danger rounded-pill align-items-center edit-score-buttons">
-                                            <div><button class="btn btn-sm btn-menu-panel" data-action="click:addPoint"><i class="fas fa-plus-circle"></i></button></div>
-                                            <div><button class="btn btn-sm btn-menu-panel" data-action="click:removePoint"><i class="fas fa-minus-circle"></i></button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </template>
-                    </ul>
-                </div>
+                    <div class="share-view d-none">
+                        <textarea rows="10" style="height: 100%" class="form-control" id="player-share-area"></textarea>
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <div>
+                                <button class="btn btn-primary" id="export-button">
+                                    Export
+                                </button>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" id="import-button">
+                                    Import
+                                </button>
+                            </div>
+                            <div>
+                                <button class="btn btn-danger" id="share-cancel-button">
+                                    Retour
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <div class="w-100 mt-5 p-5">
-                <button class="btn btn-go w-100  animate__infinite animate__animated animate__pulse" id="go-button">
-                    <i class="fa-solid fa-horse me-2"></i> C'est parti!
-                </button>
-            </div>
+
         </div>
     </div>
 

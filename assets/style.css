@@ -113,12 +113,14 @@ body {
 }
 
 .avatar{
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background-position: center;
+    background-position: -60px -20px;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 300%;
+    transform: scaleX(-1);
+    background-color: #578014;
 }
 
 .players{
