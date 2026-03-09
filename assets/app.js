@@ -107,8 +107,6 @@ const game = {
             console.error(`${element.dataset.action} is invalid`)
             return false
         }
-        console.log(params[0])
-        console.log(params[1])
         element.addEventListener(params[0], event => this[params[1]](event) )
     },
 
@@ -132,7 +130,6 @@ const game = {
         }catch(err){
             alert('Json Incorrect')
         }
-        console.log(data)
         if( !data ){
             return
         }
@@ -219,7 +216,7 @@ const game = {
         animationOverlay.querySelector(".player-animation-card").style.backgroundImage = `url("./assets/images/${player.character}.png")`
         animationOverlay.querySelector(".player-animation-name").textContent = `${player.name}`
         if (times === 0) {
-            this.pickedPlayer = player
+            this.pickedPlayer = this.getRandomPlayer( this.config.players)
             this.showScoreResultChoice()
             return
         }
@@ -228,8 +225,6 @@ const game = {
 
     updatePlayerPosition(player){
         const playerCardElement = raceZone.querySelector("#player_card_"+player.name.toLowerCase().replace(' ', '_'))
-        console.log("#player_card_"+player.name.toLowerCase().replace(' ', '_'))
-        console.log(playerCardElement)
         if( !playerCardElement ){
             return
         }
@@ -301,7 +296,6 @@ const game = {
     },
 
     onReset(){
-        console.log('local state restored')
         this.config = DEFAULT_CONFIG
         this.saveInLocalStorage()
         window.location.reload()
@@ -355,6 +349,29 @@ const game = {
 
         this.pickedPlayer = null
     },
+
+    test(times = 250){
+        const results = {}
+        const winner = {
+            player: null,
+            score: 0,
+        }
+        for( let i = 0; i < times; i++ ){
+            const player = game.getRandomPlayer(game.config.players)
+            if( !results[player.name] ){
+                results[player.name] = 0;
+            }
+            results[player.name] ++
+            if( results[player.name] > winner.score  ){
+                winner.score = results[player.name]
+                winner.player = player.name
+            }
+
+        }
+        console.table(results)
+        console.log(`Winner: ${winner.player} - ${winner.score} points`)
+    }
 }
 
 game.init()
+
